@@ -28,10 +28,42 @@ public class App {
 		s2.close(); 
 		
 //		No tiene en cuenta la configuración regional del usuario.
-		System.out.println("Código: " + id +
-											" Producto: " + producto +
-											" Precio: " + precio);
+//		System.out.println("Código: " + id +
+//											" Producto: " + producto +
+//											" Precio: " + precio);
 		
-
+//		Leer de un fichero de String con Scanner
+		try {
+			Scanner s3 = new Scanner( new File("datosString.txt") );
+			
+			int lineNumber = 1; 
+			while(s3.hasNextLine()){
+				String line = s3.nextLine();
+				
+//				System.out.println("Line " + lineNumber +
+//											": " + line);
+				lineNumber++; 
+			}
+			s3.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} 
+		
+//		Leer fichero con Scanner, split y String[ ]
+		String csvFile = "datos.txt"; 
+		String csvSeparator = ";"; 
+		String[] line = null;
+		try {
+			Scanner s4 = new Scanner(new File(csvFile));
+			
+			while (s4.hasNextLine()){
+				line = s4.nextLine().split(";"); 
+				
+				System.out.println("Id: " +line[0] + " Producto: "+line[1]+ " Precio: "+line[2]);
+			}
+			s4.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
 	}
 }//fin class consola.App
